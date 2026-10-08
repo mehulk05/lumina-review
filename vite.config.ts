@@ -1,23 +1,11 @@
 import path from 'path';
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-export default defineConfig(({ mode }) => {
-    const env = loadEnv(mode, '.', '');
-    return {
-      server: {
-        port: 3000,
-        host: '0.0.0.0',
-      },
-      plugins: [react()],
-      define: {
-        'process.env.API_KEY': JSON.stringify(env.GEMINI_API_KEY),
-        'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY)
-      },
-      resolve: {
-        alias: {
-          '@': path.resolve(__dirname, '.'),
-        }
-      }
-    };
+// No API keys are injected into the client bundle. All content is static and
+// pre-written; nothing is generated at runtime, so the browser needs no secrets.
+export default defineConfig({
+  server: { port: 3000, host: '0.0.0.0' },
+  plugins: [react()],
+  resolve: { alias: { '@': path.resolve(__dirname, '.') } }
 });
