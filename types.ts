@@ -60,3 +60,45 @@ export interface BuyerGuide {
   commonMistakes: string[];
   conclusion: string;
 }
+
+/** A pre-written, editorially reviewed article. Static — never generated at runtime. */
+export interface StaticReview {
+  slug: string;
+  productName: string;
+  category: string;
+  /** Page <title> and H1. */
+  title: string;
+  /** Meta description, ~155 chars. */
+  metaDescription: string;
+  publishedAt: string;
+  updatedAt: string;
+  author: string;
+  priceAtReview: string;
+  imageUrl: string;
+  imageCredit?: string;
+  amazonUrl: string;
+  /** One-paragraph answer for readers who only read the top. */
+  bottomLine: string;
+  /** Body sections, rendered in order. */
+  sections: Array<{ heading: string; paragraphs: string[] }>;
+  specs: Array<{ label: string; value: string }>;
+  pros: string[];
+  cons: string[];
+  whoIsItFor: string;
+  whoIsItNotFor: string;
+  /** Real, checkable sources. Empty array is not acceptable for a published review. */
+  sources: Array<{ title: string; uri: string }>;
+}
+
+export interface StaticGuide {
+  slug: string;
+  title: string;
+  metaDescription: string;
+  publishedAt: string;
+  updatedAt: string;
+  author: string;
+  intro: string;
+  sections: Array<{ heading: string; paragraphs: string[] }>;
+  mistakes: string[];
+  sources: Array<{ title: string; uri: string }>;
+}
