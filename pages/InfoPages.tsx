@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT_EMAIL, DISCLOSURE, SITE_NAME, SITE_OWNER } from '../constants';
-import { usePageMeta } from '../hooks/usePageMeta';
 
 const Prose: React.FC<{ title: string; updated: string; children: React.ReactNode }> = ({
   title,
@@ -18,10 +17,6 @@ const Prose: React.FC<{ title: string; updated: string; children: React.ReactNod
 );
 
 export const AboutPage: React.FC = () => {
-  usePageMeta(
-    `About — ${SITE_NAME}`,
-    `Who writes ${SITE_NAME}, how we pick products, and how the site is funded.`
-  );
   return (
     <Prose title="About LuminaReviews" updated="8 October 2026">
       <p>
@@ -67,7 +62,6 @@ export const AboutPage: React.FC = () => {
 };
 
 export const ContactPage: React.FC = () => {
-  usePageMeta(`Contact — ${SITE_NAME}`, `How to reach ${SITE_NAME} about corrections or questions.`);
   return (
     <Prose title="Contact" updated="8 October 2026">
       <p>
@@ -99,10 +93,6 @@ export const ContactPage: React.FC = () => {
 };
 
 export const EditorialPolicyPage: React.FC = () => {
-  usePageMeta(
-    `Editorial policy — ${SITE_NAME}`,
-    'How we research, how we handle affiliate links, and how we correct mistakes.'
-  );
   return (
     <Prose title="Editorial policy" updated="8 October 2026">
       <h2>How we research a product</h2>
@@ -146,10 +136,6 @@ export const EditorialPolicyPage: React.FC = () => {
 };
 
 export const PrivacyPolicyPage: React.FC = () => {
-  usePageMeta(
-    `Privacy policy — ${SITE_NAME}`,
-    `What data ${SITE_NAME} collects, what third parties are involved, and your choices.`
-  );
   return (
     <Prose title="Privacy policy" updated="8 October 2026">
       <p>
@@ -216,7 +202,6 @@ export const PrivacyPolicyPage: React.FC = () => {
 };
 
 export const NotFoundPage: React.FC = () => {
-  usePageMeta(`Page not found — ${SITE_NAME}`, 'That page does not exist.');
   return (
     <div className="max-w-xl mx-auto px-4 py-28 text-center">
       <h1 className="text-5xl font-serif text-slate-900 mb-4">Page not found</h1>

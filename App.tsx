@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
+import RouteMeta from './components/RouteMeta';
 import { HomePage, ReviewArticlePage, ReviewsIndexPage } from './pages/ReviewPages';
 import {
   AboutPage,
@@ -15,6 +16,7 @@ import {
 const App: React.FC = () => (
   <div className="min-h-screen flex flex-col bg-white selection:bg-indigo-100">
     <ScrollToTop />
+    <RouteMeta />
     <Header />
     <main className="flex-grow">
       <Routes>

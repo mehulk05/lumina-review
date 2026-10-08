@@ -2,9 +2,9 @@ import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { REVIEWS, getReviewBySlug } from '../content/reviews';
 import { DISCLOSURE, SITE_NAME, withTag } from '../constants';
-import { usePageMeta } from '../hooks/usePageMeta';
 import { NotFoundPage } from './InfoPages';
 import { StaticReview } from '../types';
+import { formatDate } from '../utils/formatDate';
 
 const AffiliateNote: React.FC = () => (
   <p className="text-xs text-slate-500 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3">
@@ -48,10 +48,6 @@ const ReviewCard: React.FC<{ review: StaticReview }> = ({ review }) => (
 );
 
 export const HomePage: React.FC = () => {
-  usePageMeta(
-    `${SITE_NAME} — honest product reviews for India`,
-    'Detailed, sourced reviews of electronics sold in India. We show our working and tell you when something is not worth the money.'
-  );
 
   return (
     <div className="pb-20">
@@ -112,10 +108,6 @@ export const HomePage: React.FC = () => {
 };
 
 export const ReviewsIndexPage: React.FC = () => {
-  usePageMeta(
-    `All reviews — ${SITE_NAME}`,
-    'Every review published on LuminaReviews, newest first.'
-  );
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       <h1 className="text-4xl font-serif text-slate-900 mb-10">All reviews</h1>
@@ -132,11 +124,6 @@ export const ReviewArticlePage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const review = slug ? getReviewBySlug(slug) : undefined;
 
-  usePageMeta(
-    review ? `${review.title} — ${SITE_NAME}` : `Not found — ${SITE_NAME}`,
-    review?.metaDescription ?? '',
-    review?.imageUrl
-  );
 
   if (!review) return <NotFoundPage />;
 
@@ -157,11 +144,7 @@ export const ReviewArticlePage: React.FC = () => {
         </h1>
         <p className="text-sm text-slate-500">
           By {review.author} · Published{' '}
-          {new Date(review.publishedAt).toLocaleDateString('en-IN', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-          })}
+          {formatDate(review.publishedAt)}
           {review.updatedAt !== review.publishedAt && ' · Updated'}
         </p>
       </header>
